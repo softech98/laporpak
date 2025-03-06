@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Format New Instalasi Armada</title>
+    <!-- Link Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .section-divider {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-top: 2px solid #ccc;
+        }
+
+        .form-section-title {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-5" style="font-family: &quot;Courier New&quot;;">
+        <h2 class="text-center" style="font-weight: 600;">FORM INSTALASI BARU ARMADA JAMBI</h2>
+        <form id="installationForm">
+            <!-- Customer Information Section -->
+            <div class="mb-4">
+                <h5 class="form-section-title">Customer Information</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="customerID" class="form-label">Customer ID:</label>
+                        <input type="text" class="form-control" id="customerID" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="woID" class="form-label">WO ID:</label>
+                        <input type="text" class="form-control" id="woID" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Nama Customer:</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cluster" class="form-label">Cluster:</label>
+                        <input type="text" class="form-control" id="cluster" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="address" class="form-label">Alamat:</label>
+                        <input type="text" class="form-control" id="address" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cp" class="form-label">CP Customer:</label>
+                        <input type="text" class="form-control" id="cp" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- FAT, Port, Paket, DC Section -->
+            <div class="mb-4">
+                <h5 class="form-section-title">FAT & Configuration</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="fat" class="form-label">FAT:</label>
+                        <input type="text" class="form-control" id="fat" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="port" class="form-label">Port:</label>
+                        <input type="text" class="form-control" id="port" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="package" class="form-label">Paket:</label>
+                        <input type="text" class="form-control" id="package" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="dc" class="form-label">DC:</label>
+                        <input type="text" class="form-control" id="dc" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- SN ONT, STB, Router Section -->
+            <div class="mb-4">
+                <h5 class="form-section-title">SN Information</h5>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="snONT" class="form-label">SN ONT:</label>
+                        <input type="text" class="form-control" id="snONT" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="snSTB" class="form-label">SN STB:</label>
+                        <input type="text" class="form-control" id="snSTB" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="snRouter" class="form-label">SN Router:</label>
+                        <input type="text" class="form-control" id="snRouter" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Installation Information Section -->
+            <div class="mb-4">
+                <h5 class="form-section-title">Installation Information</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="typeOrderan" class="form-label">Type Orderan:</label>
+                        <select id="typeOrderan" name="typeOrderan" class="form-control">
+                            <option value="Reguler">Reguler</option>
+                            <option value="Sameday">Sameday</option>
+                        </select>
+                        <!-- <input type="text" class="form-control" id="typeOrderan" placeholder="Reguler / Sameday"> -->
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tim" class="form-label">TEAM INSTALASI:</label>
+                        <select id="tim" name="tim" class="form-control">
+                            <option value="">- Pilih Team - </option>
+                            <option value="TEAM 1">TEAM 1</option>
+                            <option value="TEAM 2">TEAM 2</option>
+                            <option value="TEAM 3">TEAM 3</option>
+                            <option value="TEAM 4">TEAM 4</option>
+                            <option value="TEAM 5">TEAM 5</option>
+                            <option value="TEAM 6">TEAM 6</option>
+                            <option value="TEAM 7">TEAM 7</option>
+                            <option value="TEAM 8">TEAM 8</option>
+                            <option value="TEAM 9">TEAM 9</option>
+                            <option value="TEAM 10">TEAM 10</option>
+                            <option value="TEAM MT">TEAM MT</option>
+                        </select>
+
+                        <!-- <input type="text" class="form-control" id="tim" placeholder="TEAM 2"> -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="technician" class="form-label">Teknisi:</label>
+                        <input type="text" class="form-control" id="technician"
+                            placeholder="Contoh: Ali & Rudi || Jangan Gunakan Tanda - + / ">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tikorPel" class="form-label">Tikor Pel:</label>
+                        <input type="text" class="form-control" id="tikorPel" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Date and Time Section -->
+            <div class="mb-4">
+                <h5 class="form-section-title">Waktu dan Tanggal</h5>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="inTime" class="form-label">In:</label>
+                        <input type="time" class="form-control" id="inTime" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="outTime" class="form-label">Out:</label>
+                        <input type="time" class="form-control" id="outTime" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="date" class="form-label">Tgl:</label>
+                        <input type="date" class="form-control" id="date" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="button" class="btn btn-primary" onclick="copyToClipboard()">Copy to Clipboard</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Link Bootstrap JS and Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Copy to Clipboard -->
+    <script>
+
+        function toProperCase(str) {
+            return str.replace(/\w\S*/g, function (word) {
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            });
+        }
+
+        function copyToClipboard() {
+            const form = document.getElementById('installationForm');
+            let formData = `
+**FORMAT NEW INSTALASI ARMADA**
+
+/LaporPak
+Customer ID: ${toProperCase(document.getElementById('customerID').value)}
+WO ID: ${toProperCase(document.getElementById('woID').value)}
+Nama: ${toProperCase(document.getElementById('name').value)}
+Cluster: ${toProperCase(document.getElementById('cluster').value)}
+Alamat: ${toProperCase(document.getElementById('address').value)}
+CP: ${toProperCase(document.getElementById('cp').value)}
+============================
+FAT: ${toProperCase(document.getElementById('fat').value)}
+Port: ${toProperCase(document.getElementById('port').value)}
+Paket: ${toProperCase(document.getElementById('package').value)}
+DC: ${toProperCase(document.getElementById('dc').value)}
+============================
+SN ONT: ${document.getElementById('snONT').value}
+SN STB: ${document.getElementById('snSTB').value}
+SN Router: ${document.getElementById('snRouter').value}
+=============================
+Type: ${toProperCase(document.getElementById('typeOrderan').value)}
+TIM: ${toProperCase(document.getElementById('tim').value)}
+Teknisi: ${toProperCase(document.getElementById('technician').value)}
+Tikor Pel: ${document.getElementById('tikorPel').value}
+============================
+Waktu dan tanggal
+In: ${document.getElementById('inTime').value}
+Out: ${document.getElementById('outTime').value}
+Tgl: ${document.getElementById('date').value}
+            `;
+
+
+            // Convert to uppercase
+            // formData = formData.toUpperCase();
+
+            // Create a textarea element to use the "document.execCommand('copy')" method
+            const textarea = document.createElement('textarea');
+            textarea.value = formData;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            // Alert user that content has been copied
+            alert('Data Berhasil di Copy ke Clipboard. Silahkan Tempel ke Telegram. Siap Kirim!!');
+        }
+    </script>
+</body>
+
+</html>
