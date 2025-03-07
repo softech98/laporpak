@@ -3,7 +3,7 @@
 
 <head>
 
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <!-- Primary Meta Tags -->
     <title>Form instalasi baru Vendor ARMADA Jambi</title>
@@ -50,15 +50,76 @@
             background: #fff;
             width: 100%;
             z-index: 1000;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            list-style-type: none;
         }
 
         .autocomplete-suggestion {
-            padding: 8px;
+            padding: 5px;
             cursor: pointer;
+            transition: background-color 0.2s ease;
         }
 
         .autocomplete-suggestion:hover {
             background-color: #3188b1;
+            max-width: fit-content;
+        }
+        
+        .highlight {
+            font-weight: bold;
+        }
+
+        .btn {
+
+            cursor: pointer;
+            position: relative;
+            padding: 5px 20px;
+            background: #3188b1;
+            font-size: 21px;
+            font-weight: bold;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            transition: all 1s;
+
+            &:after,
+            &:before {
+                content: " ";
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                border: 0px solid #fff;
+                transition: all 1s;
+            }
+
+            &:after {
+                top: -1px;
+                left: -1px;
+                border-top: 5px solid black;
+                border-left: 5px solid black;
+            }
+
+            &:before {
+                bottom: -1px;
+                right: -1px;
+                border-bottom: 5px solid black;
+                border-right: 5px solid black;
+            }
+
+            &:hover {
+                border-top-right-radius: 0px;
+                border-bottom-left-radius: 0px;
+                background: rgba(0, 0, 0, 0.774);
+                color: white;
+
+                &:before,
+                &:after {
+
+                    width: 100%;
+                    height: 100%;
+                    border-color:pink;
+                }
+            }
         }
     </style>
 </head>
@@ -139,7 +200,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label for="snONT" class="form-label">SN ONT:</label>
-                        <input type="text" class="form-control" id="snONT" required>
+                        <input type="text" class="form-control" id="snONT" autocomplete="off">
+                        <div id="snONT-suggestions" class="autocomplete-suggestions"></div>
                     </div>
                     <div class="col-md-4">
                         <label for="snSTB" class="form-label">SN STB:</label>
@@ -222,7 +284,8 @@
             </div>
 
             <div class="text-center">
-                <button type="button" class="btn btn-primary" onclick="copyToClipboard()">Copy to Clipboard</button>
+                <button type="button" class="btn btn-warning btn-md" onclick="copyToClipboard()">Copy to
+                    Clipboard</button>
                 <button type="reset" class="btn btn-warning btn-md ">Reset Form</button>
             </div>
         </form>
@@ -299,6 +362,7 @@ Tgl: ${document.getElementById('date').value}
         // Variabel untuk menyimpan data
         let clusters = [];
         let technicians = [];
+        let snONTs = [];
 
         // Fungsi untuk mengambil data dari Google Sheets API
         async function fetchDataFromGoogleSheets() {
@@ -309,7 +373,8 @@ Tgl: ${document.getElementById('date').value}
 
                 // Ambil data Cluster dan Teknisi (sesuaikan indeks kolomnya)
                 clusters = data.values.map(row => row[0]);  // Kolom 1 = Cluster
-                technicians = data.values.map(row => row[2]);  // Kolom 2 = Teknisi
+                technicians = data.values.map(row => row[1]);  // Kolom 2 = Teknisi
+                snONTs = data.values.map(row => row[3]);  // Kolom 3 = SN ONT
             } catch (error) {
                 console.error('Error fetching data from Google Sheets:', error);
             }
@@ -320,29 +385,33 @@ Tgl: ${document.getElementById('date').value}
             const input = document.getElementById(inputId);
             const suggestionBox = document.getElementById(suggestionBoxId);
             suggestionBox.innerHTML = ''; // Hapus saran sebelumnya
-            
+
             // Jika input kosong, langsung keluar tanpa menampilkan saran
             if (input.value === '') {
                 return;
             }
 
-//             const filteredArray = myArray.filter(item => item && item.toLowerCase().includes(searchTerm.toLowerCase()));
-//             const searchTerm = userInput || ""; // Default to an empty string if undefined
-//             myArray.filter(item => {
-//     console.log("Item:", item);
-//     return item && item.toLowerCase().includes(searchTerm.toLowerCase());
-// });
+            //             const filteredArray = myArray.filter(item => item && item.toLowerCase().includes(searchTerm.toLowerCase()));
+            //             const searchTerm = userInput || ""; // Default to an empty string if undefined
+            //             myArray.filter(item => {
+            //     console.log("Item:", item);
+            //     return item && item.toLowerCase().includes(searchTerm.toLowerCase());
+            // });
 
 
 
 
             const filter = input.value.toLowerCase();
             const filteredSuggestions = suggestions.filter(suggestion => suggestion && suggestion.toLowerCase().includes(filter.toLowerCase()));
-            
+
             filteredSuggestions.forEach(suggestion => {
                 const div = document.createElement('div');
                 div.classList.add('autocomplete-suggestion');
                 div.textContent = suggestion;
+
+                // Membuat teks yang dicocokkan menjadi bold
+                const highlightedText = highlightText(suggestion, filter);
+                div.innerHTML = highlightedText;
 
                 // Ketika klik saran, masukkan ke dalam input
                 div.addEventListener('click', () => {
@@ -354,10 +423,24 @@ Tgl: ${document.getElementById('date').value}
             });
         }
 
+        function highlightText(text, searchTerm) {
+            const index = text.toLowerCase().indexOf(searchTerm.toLowerCase());
+            if (index === -1) return text; // Jika tidak ada yang cocok, kembalikan teks biasa
+
+            // Pisahkan teks menjadi bagian sebelum dan setelah pencocokan
+            const beforeMatch = text.substring(0, index);
+            const match = text.substring(index, index + searchTerm.length);
+            const afterMatch = text.substring(index + searchTerm.length);
+
+            // Kembalikan teks dengan bagian yang dicocokkan dalam tag <span> untuk membuat bold
+            return beforeMatch + `<span class="highlight">${match}</span>` + afterMatch;
+        }
+
         // Fungsi untuk menambahkan event listener pada input
         function addAutocompleteListeners() {
             const clusterInput = document.getElementById('cluster');
             const technicianInput = document.getElementById('technician');
+            const snONTInput = document.getElementById('snONT');
 
             // Ketika pengguna mengetik di Cluster
             clusterInput.addEventListener('input', () => {
@@ -367,6 +450,11 @@ Tgl: ${document.getElementById('date').value}
             // Ketika pengguna mengetik di Teknisi
             technicianInput.addEventListener('input', () => {
                 showSuggestions('technician', technicians, 'technician-suggestions');
+            });
+
+            // Ketika pengguna mengetik di SN ONT
+            snONTInput.addEventListener('input', () => {
+                showSuggestions('snONT', snONTs, 'snONT-suggestions');
             });
         }
 
