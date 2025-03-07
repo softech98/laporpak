@@ -42,22 +42,56 @@
             font-weight: bold;
         }
 
+        /* Background luar container */
+        body {
+            background: rgba(0, 0, 0, 0.4);
+            /* Transparansi latar belakang */
+            background-image: url('assets/background.jpg');
+            /* Gambar background */
+            background-size: cover;
+            background-position: center;
+            font-family: 'Courier New', Courier, monospace;
+            color: #000000;
+            padding: 0;
+            margin: 0;
+
+
+        }
+
+        
+
+        .container {
+            background: rgba(255, 255, 255, 0.970);
+            /* Transparansi putih */
+            border-radius: 15px;
+            /* Rounded corners */
+            padding: 30px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            /* Shadow effect */
+            margin-top: 5%;
+            max-width: 800px;
+
+        }
+
+
+
         /* Autocomplete suggestions */
         .autocomplete-suggestions {
             max-height: 200px;
             overflow-y: auto;
             position: absolute;
-            background: #fff;
+            background: #fff;   
             width: 100%;
             z-index: 1000;
             border-top: none;
             border-radius: 0 0 4px 4px;
-            list-style-type: none;
+            max-width: max-content;
         }
 
         .autocomplete-suggestion {
             padding: 5px;
             cursor: pointer;
+            max-width: max-content;
             transition: background-color 0.2s ease;
         }
 
@@ -65,7 +99,7 @@
             background-color: #3188b1;
             max-width: fit-content;
         }
-        
+
         .highlight {
             font-weight: bold;
         }
@@ -117,178 +151,186 @@
 
                     width: 100%;
                     height: 100%;
-                    border-color:pink;
+                    border-color: pink;
                 }
             }
         }
+
+        
+
+        */
     </style>
 </head>
 
 <body>
-    <div class="container my-5" style="font-family: 'Courier New', Courier, monospace">
-        <h2 class="text-center" style="font-weight: 600;">FORM INSTALASI BARU ARMADA JAMBI</h2>
-        <form id="installationForm">
-            <!-- Customer Information Section -->
-            <div class="mb-4">
-                <h5 class="form-section-title">Customer Information</h5>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="customerID" class="form-label">Customer ID:</label>
-                        <input type="text" class="form-control" id="customerID" required>
+    <div class="full-bleed">
+        <div class="container my-5">
+            <h2 class="text-center" style="font-weight: 600;">FORM INSTALASI BARU ARMADA JAMBI</h2>
+            <form id="installationForm">
+                <!-- Customer Information Section -->
+                <div class="mb-4">
+                    <h5 class="form-section-title">Customer Information</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="customerID" class="form-label">Customer ID:</label>
+                            <input type="text" class="form-control" id="customerID" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="woID" class="form-label">WO ID:</label>
+                            <input type="text" class="form-control" id="woID" required>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label for="woID" class="form-label">WO ID:</label>
-                        <input type="text" class="form-control" id="woID" required>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Nama Customer:</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cluster" class="form-label">Cluster:</label>
+                            <input type="text" class="form-control" id="cluster" placeholder="Masukkan Cluster"
+                                autocomplete="off">
+                            <div id="cluster-suggestions" class="autocomplete-suggestions"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="name" class="form-label">Nama Customer:</label>
-                        <input type="text" class="form-control" id="name" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="cluster" class="form-label">Cluster:</label>
-                        <input type="text" class="form-control" id="cluster" placeholder="Masukkan Cluster"
-                            autocomplete="off">
-                        <div id="cluster-suggestions" class="autocomplete-suggestions"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="address" class="form-label">Alamat:</label>
-                        <input type="text" class="form-control" id="address" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="cp" class="form-label">CP Customer:</label>
-                        <input type="text" class="form-control" id="cp" required>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-divider"></div>
-
-            <!-- FAT, Port, Paket, DC Section -->
-            <div class="mb-4">
-                <h5 class="form-section-title">FAT & Configuration</h5>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="fat" class="form-label">FAT:</label>
-                        <input type="text" class="form-control" id="fat" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="port" class="form-label">Port:</label>
-                        <input type="text" class="form-control" id="port" required>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="address" class="form-label">Alamat:</label>
+                            <input type="text" class="form-control" id="address" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cp" class="form-label">CP Customer:</label>
+                            <input type="text" class="form-control" id="cp" required>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="package" class="form-label">Paket:</label>
-                        <input type="text" class="form-control" id="package" required>
+
+                <div class="section-divider"></div>
+
+                <!-- FAT, Port, Paket, DC Section -->
+                <div class="mb-4">
+                    <h5 class="form-section-title">FAT & Configuration</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="fat" class="form-label">FAT:</label>
+                            <input type="text" class="form-control" id="fat" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="port" class="form-label">Port:</label>
+                            <input type="text" class="form-control" id="port" required>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label for="dc" class="form-label">DC:</label>
-                        <input type="text" class="form-control" id="dc" required>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="package" class="form-label">Paket:</label>
+                            <input type="text" class="form-control" id="package" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="dc" class="form-label">DC:</label>
+                            <input type="text" class="form-control" id="dc" required>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="section-divider"></div>
+                <div class="section-divider"></div>
 
-            <!-- SN ONT, STB, Router Section -->
-            <div class="mb-4">
-                <h5 class="form-section-title">SN Information</h5>
-                <div class="row">
-                    <div class="col-md-4">
-                        <label for="snONT" class="form-label">SN ONT:</label>
-                        <input type="text" class="form-control" id="snONT" autocomplete="off">
-                        <div id="snONT-suggestions" class="autocomplete-suggestions"></div>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="snSTB" class="form-label">SN STB:</label>
-                        <input type="text" class="form-control" id="snSTB" required>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="snRouter" class="form-label">SN Router:</label>
-                        <input type="text" class="form-control" id="snRouter" required>
+                <!-- SN ONT, STB, Router Section -->
+                <div class="mb-4">
+                    <h5 class="form-section-title">SN Information</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="snONT" class="form-label">SN ONT:</label>
+                            <input type="text" class="form-control" id="snONT" autocomplete="off">
+                            <div id="snONT-suggestions" class="autocomplete-suggestions"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="snSTB" class="form-label">SN STB:</label>
+                            <input type="text" class="form-control" id="snSTB" autocomplete="off">
+                            <div id="snSTB-suggestions" class="autocomplete-suggestions"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="snRouter" class="form-label">SN Router:</label>
+                            <input type="text" class="form-control" id="snRouter" autocomplete="off">
+                            <div id="snRouter-suggestions" class="autocomplete-suggestions"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="section-divider"></div>
+                <div class="section-divider"></div>
 
-            <!-- Installation Information Section -->
-            <div class="mb-4">
-                <h5 class="form-section-title">Installation Information</h5>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="typeOrderan" class="form-label">Type Orderan:</label>
-                        <select id="typeOrderan" name="typeOrderan" class="form-control">
-                            <option value="Reguler">Reguler</option>
-                            <option value="Sameday">Sameday</option>
-                        </select>
-                        <!-- <input type="text" class="form-control" id="typeOrderan" placeholder="Reguler / Sameday"> -->
+                <!-- Installation Information Section -->
+                <div class="mb-4">
+                    <h5 class="form-section-title">Installation Information</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="typeOrderan" class="form-label">Type Orderan:</label>
+                            <select id="typeOrderan" name="typeOrderan" class="form-control">
+                                <option value="Reguler">Reguler</option>
+                                <option value="Sameday">Sameday</option>
+                            </select>
+                            <!-- <input type="text" class="form-control" id="typeOrderan" placeholder="Reguler / Sameday"> -->
+                        </div>
+                        <div class="col-md-6">
+                            <label for="tim" class="form-label">TEAM INSTALASI:</label>
+                            <select id="tim" name="tim" class="form-control">
+                                <option value="">- Pilih Team - </option>
+                                <option value="Team 1">TEAM 1</option>
+                                <option value="Team 2">TEAM 2</option>
+                                <option value="Team 3">TEAM 3</option>
+                                <option value="Team 4">TEAM 4</option>
+                                <option value="Team 5">TEAM 5</option>
+                                <option value="Team 6">TEAM 6</option>
+                                <option value="Team 7">TEAM 7</option>
+                                <option value="Team 8">TEAM 8</option>
+                                <option value="Team 9">TEAM 9</option>
+                                <option value="Team 10">TEAM 10</option>
+                                <option value="Team MT">TEAM MT</option>
+                            </select>
+
+                            <!-- <input type="text" class="form-control" id="tim" placeholder="TEAM 2"> -->
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label for="tim" class="form-label">TEAM INSTALASI:</label>
-                        <select id="tim" name="tim" class="form-control">
-                            <option value="">- Pilih Team - </option>
-                            <option value="Team 1">TEAM 1</option>
-                            <option value="Team 2">TEAM 2</option>
-                            <option value="Team 3">TEAM 3</option>
-                            <option value="Team 4">TEAM 4</option>
-                            <option value="Team 5">TEAM 5</option>
-                            <option value="Team 6">TEAM 6</option>
-                            <option value="Team 7">TEAM 7</option>
-                            <option value="Team 8">TEAM 8</option>
-                            <option value="Team 9">TEAM 9</option>
-                            <option value="Team 10">TEAM 10</option>
-                            <option value="Team MT">TEAM MT</option>
-                        </select>
-
-                        <!-- <input type="text" class="form-control" id="tim" placeholder="TEAM 2"> -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="technician" class="form-label">Teknisi:</label>
+                            <input type="text" class="form-control" id="technician"
+                                placeholder="Contoh: Ali & Rudi || Jangan Gunakan Tanda - + / " autocomplete="off">
+                            <div id="technician-suggestions" class="autocomplete-suggestions"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="tikorPel" class="form-label">Tikor Pel:</label>
+                            <input type="text" class="form-control" id="tikorPel" required>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="technician" class="form-label">Teknisi:</label>
-                        <input type="text" class="form-control" id="technician"
-                            placeholder="Contoh: Ali & Rudi || Jangan Gunakan Tanda - + / " autocomplete="off">
-                        <div id="technician-suggestions" class="autocomplete-suggestions"></div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="tikorPel" class="form-label">Tikor Pel:</label>
-                        <input type="text" class="form-control" id="tikorPel" required>
+
+                <div class="section-divider"></div>
+
+                <!-- Date and Time Section -->
+                <div class="mb-4">
+                    <h5 class="form-section-title">Waktu dan Tanggal</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="inTime" class="form-label">In:</label>
+                            <input type="time" class="form-control" id="inTime" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="outTime" class="form-label">Out:</label>
+                            <input type="time" class="form-control" id="outTime" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="date" class="form-label">Tgl:</label>
+                            <input type="date" class="form-control" id="date" required>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="section-divider"></div>
-
-            <!-- Date and Time Section -->
-            <div class="mb-4">
-                <h5 class="form-section-title">Waktu dan Tanggal</h5>
-                <div class="row">
-                    <div class="col-md-4">
-                        <label for="inTime" class="form-label">In:</label>
-                        <input type="time" class="form-control" id="inTime" required>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="outTime" class="form-label">Out:</label>
-                        <input type="time" class="form-control" id="outTime" required>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="date" class="form-label">Tgl:</label>
-                        <input type="date" class="form-control" id="date" required>
-                    </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-warning btn-md" onclick="copyToClipboard()">Copy to
+                        Clipboard</button>
+                    <button type="reset" class="btn btn-warning btn-md ">Reset Form</button>
                 </div>
-            </div>
-
-            <div class="text-center">
-                <button type="button" class="btn btn-warning btn-md" onclick="copyToClipboard()">Copy to
-                    Clipboard</button>
-                <button type="reset" class="btn btn-warning btn-md ">Reset Form</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
     <!-- Link Bootstrap JS and Dependencies -->
@@ -363,6 +405,8 @@ Tgl: ${document.getElementById('date').value}
         let clusters = [];
         let technicians = [];
         let snONTs = [];
+        let snSTBs = [];
+        let snRouters = [];
 
         // Fungsi untuk mengambil data dari Google Sheets API
         async function fetchDataFromGoogleSheets() {
@@ -375,6 +419,8 @@ Tgl: ${document.getElementById('date').value}
                 clusters = data.values.map(row => row[0]);  // Kolom 1 = Cluster
                 technicians = data.values.map(row => row[1]);  // Kolom 2 = Teknisi
                 snONTs = data.values.map(row => row[3]);  // Kolom 3 = SN ONT
+                snSTBs = data.values.map(row => row[4]);  // Kolom 3 = SN ONT
+                snRouters = data.values.map(row => row[5]);  // Kolom 3 = SN ONT
             } catch (error) {
                 console.error('Error fetching data from Google Sheets:', error);
             }
@@ -441,6 +487,8 @@ Tgl: ${document.getElementById('date').value}
             const clusterInput = document.getElementById('cluster');
             const technicianInput = document.getElementById('technician');
             const snONTInput = document.getElementById('snONT');
+            const snSTBInput = document.getElementById('snSTB');
+            const snRouterInput = document.getElementById('snRouter');
 
             // Ketika pengguna mengetik di Cluster
             clusterInput.addEventListener('input', () => {
@@ -455,6 +503,14 @@ Tgl: ${document.getElementById('date').value}
             // Ketika pengguna mengetik di SN ONT
             snONTInput.addEventListener('input', () => {
                 showSuggestions('snONT', snONTs, 'snONT-suggestions');
+            });
+            // Ketika pengguna mengetik di SN STB
+            snSTBInput.addEventListener('input', () => {
+                showSuggestions('snSTB', snSTBs, 'snSTB-suggestions');
+            });
+            // Ketika pengguna mengetik di SN Router
+            snRouterInput.addEventListener('input', () => {
+                showSuggestions('snRouter', snRouters, 'snRouter-suggestions');
             });
         }
 
