@@ -63,6 +63,7 @@
         .container {
             background: rgba(255, 255, 255, 0.970);
             /* Transparansi putih */
+            background-size: cover;
             border-radius: 15px;
             /* Rounded corners */
             padding: 30px;
@@ -187,7 +188,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="cluster" class="form-label">Cluster:</label>
-                            <input type="text" class="form-control" id="cluster" placeholder="Masukkan Cluster"
+                            <input type="text" class="form-control" id="cluster" placeholder=""
                                 autocomplete="off">
                             <div id="cluster-suggestions" class="autocomplete-suggestions"></div>
                         </div>
@@ -375,7 +376,7 @@ Tikor Pel: ${document.getElementById('tikorPel').value}
 Waktu dan tanggal
 In: ${document.getElementById('inTime').value}
 Out: ${document.getElementById('outTime').value}
-Tgl: ${document.getElementById('date').value}
+Tgl: ${formatDateToDDMMYYYY(document.getElementById('date').value)}
             `;
 
 
@@ -513,11 +514,35 @@ Tgl: ${document.getElementById('date').value}
                 showSuggestions('snRouter', snRouters, 'snRouter-suggestions');
             });
         }
+        function setTodayDate() {
+
+            const today = new Date();
+            const dd = String(today.getDate()).padStart(2, '0'); // Menambahkan 0 jika tanggal < 10
+            const mm = String(today.getMonth() + 1).padStart(2, '0'); // Menambahkan 0 jika bulan < 10
+            const yyyy = today.getFullYear();
+
+            const formattedDate = yyyy + '-' + mm + '-' + dd; // Format ke yyyy-mm-dd untuk input type date
+            const hariini = dd + '-' + mm + '-' + yyyy;
+            document.getElementById('date').value = formattedDate; // Set tanggal di input
+            console.log(hariini);
+            // return hariini; 
+        }
+        function formatDateToDDMMYYYY(dateValue) {
+            const date = new Date(dateValue);
+            const dd = String(date.getDate()).padStart(2, '0');
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const yyyy = date.getFullYear();
+            return `${dd}-${mm}-${yyyy}`; // Format dd-mm-yyyy
+        }
+
+       
+
 
         // Memanggil fungsi untuk mengambil data saat halaman dimuat
         window.addEventListener('DOMContentLoaded', async () => {
             await fetchDataFromGoogleSheets();
             addAutocompleteListeners();
+            setTodayDate(); // Set tanggal otomatis ketika halaman dimuat
         });
     </script>
 </body>
