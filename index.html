@@ -418,7 +418,8 @@ Tgl: ${formatDateToDDMMYYYY(document.getElementById('date').value)}
 
                 // Ambil data Cluster dan Teknisi (sesuaikan indeks kolomnya)
                 clusters = data.values.map(row => row[0]);  // Kolom 1 = Cluster
-                technicians = data.values.map(row => row[1]);  // Kolom 2 = Teknisi
+                technicians = data.values.map(row => row[2]);  // Kolom 2 = Teknisi
+                // technicians = data.values.map(row => [row[1], row[2]]);  // Kolom 2 = Teknisi
                 snONTs = data.values.map(row => row[3]);  // Kolom 3 = SN ONT
                 snSTBs = data.values.map(row => row[4]);  // Kolom 3 = SN ONT
                 snRouters = data.values.map(row => row[5]);  // Kolom 3 = SN ONT
